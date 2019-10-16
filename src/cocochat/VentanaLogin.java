@@ -28,9 +28,9 @@ public class VentanaLogin extends JFrame {
         c2.setText("Username");
         JTextPane c3 = new JTextPane();
         c3.setText("Password");
-        JLabel c5 = new JLabel("Â¿Olvidaste tu contraseÃ±a?");
-        JLabel c6 = new JLabel("Â¿No tienes cuenta?");
-        JLabel c7 = new JLabel("REGÃSTRATE");
+        JLabel c5 = new JLabel("¿Olvidaste tu contraseña?");
+        JLabel c6 = new JLabel("¿No tienes cuenta?");
+        JLabel c7 = new JLabel("REGÍSTRATE");
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
