@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package login;
+package cocochat;
 
 import java.awt.Image;
 import javax.swing.GroupLayout;
