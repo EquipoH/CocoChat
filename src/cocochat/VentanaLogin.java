@@ -20,28 +20,45 @@ public class VentanaLogin extends JFrame
         Font fuente = new Font("Gadugi",0,14);
         
         JLabel c1 = new JLabel("");
-        JTextField c2 = new JTextField(" Nombre de usuario");
+        JTextField c2 = new JTextField("");
         c2.setFont(fuente); 
         c2.setBackground(new Color(200,255,255));
         c2.setBorder(null);
+        TextPrompt prueba2 = new TextPrompt("Nombre de usuario", c2);
 
-        JTextField c3 = new JTextField(" ContraseÃ±a");
+        JTextField c3 = new JTextField("");
         c3.setFont(fuente);
         c3.setBackground(new Color(200,255,255));
         c3.setBorder(null);
+         TextPrompt prueba3 = new TextPrompt("Contraseña", c3);
         
         JButton c4 = new JButton("Entrar");
         c4.setBackground(new Color(247,151,29));
         c4.setForeground(Color.black);
         c4.setFont(fuente);
         
-        JLabel c5 = new JLabel("Â¿Olvidaste tu contraseÃ±a?");
+        JLabel c5 = new JLabel("¿Olvidaste tu contraseña?");
         c5.setFont(fuente); 
         c5.setForeground(Color.white);
+        c5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         
-        JLabel c6 = new JLabel("Â¿No tienes una cuenta? Â¡RegÃ­strate gratis!");
+        c5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                c5MouseClicked(evt);
+            }
+        });
+        
+        
+        JLabel c6 = new JLabel("¿No tienes una cuenta? ¡Registrate gratis!");
         c6.setFont(fuente); 
         c6.setForeground(Color.white);
+        c6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        
+        c6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                c6MouseClicked(evt);
+            }
+        });
 
         GroupLayout layout = new GroupLayout( getContentPane() );
         getContentPane().setLayout( layout );
@@ -81,4 +98,16 @@ public class VentanaLogin extends JFrame
         c1.setIcon(icono);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }   
+    
+     private void c5MouseClicked(java.awt.event.MouseEvent evt) {  
+         this.hide();
+         VentanaRecuperarContrasena a = new VentanaRecuperarContrasena();
+         a.show();
+    }
+     
+     private void c6MouseClicked(java.awt.event.MouseEvent evt) {  
+         this.hide();
+         VentanaRegistro1 a = new VentanaRegistro1 ();
+         a.show();
+    }
 }
