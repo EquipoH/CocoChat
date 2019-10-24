@@ -73,15 +73,8 @@ public class VentanaRegistro1 extends JFrame {
     c12.setFont(new java.awt.Font("Segoe UI Black", 1, 15)); // NOI18N
         c12.setText("¿CUÁL ES TU COLOR FAVORITO?");
         
-        JLabel c18 = new JLabel("");
-        c18.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         
-        c18.setText("");
-        c18.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                c18MouseClicked(evt);
-            }
-        });
+       
         
         JLabel c19 = new JLabel("");
         c19.setText("");
@@ -124,6 +117,10 @@ public class VentanaRegistro1 extends JFrame {
     c6.setBorder(null);
     
      JButton c7 = new JButton("Registrar");
+     c7.setFont(new java.awt.Font("Segoe UI White", 3, 15));
+     c7.setBackground(java.awt.Color.DARK_GRAY);
+     c7.setForeground(Color.white);
+    c7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
     
     JSeparator c13 = new JSeparator();
     JSeparator c14 = new JSeparator();
@@ -155,7 +152,7 @@ public class VentanaRegistro1 extends JFrame {
                         .addComponent(c16,100,300,300)
                         .addComponent(c12,100,300,300)
                         .addComponent(c17,100,300,300)
-                        .addComponent(c18, 100,150,150)
+                        .addComponent(c7, 100,150,150)
                      
         );
 
@@ -184,16 +181,13 @@ public class VentanaRegistro1 extends JFrame {
                         .addComponent(c6, 40,40,40)
                         .addGap(0)
                         .addComponent(c17,30,30,30)
-                        .addComponent(c18,50,50,50)
+                        .addComponent(c7,50,50,50)
                   
           );
  
         setTitle("REGISTRO");
         pack();
-        ImageIcon logo = new ImageIcon(getClass().getResource("/imagen/boton_aceptar.png"));
-        ImageIcon icono = new ImageIcon(logo.getImage().getScaledInstance(c18.getWidth(), c18.getWidth(), Image.SCALE_AREA_AVERAGING));
-        c18.setIcon(icono);
-        
+           
         ImageIcon logo2 = new ImageIcon(getClass().getResource("/imagen/flecha5.png"));
         ImageIcon icono2 = new ImageIcon(logo2.getImage().getScaledInstance(c19.getWidth(), c19.getWidth(), Image.SCALE_AREA_AVERAGING));
         c19.setIcon(icono2);
@@ -202,9 +196,6 @@ public class VentanaRegistro1 extends JFrame {
     
     }
     
-    private void c18MouseClicked(java.awt.event.MouseEvent evt) {                                     
-        System.out.println("REGISTRADO");
-    }
      private void MouseClicked19(java.awt.event.MouseEvent evt) {                                     
         this.hide();
          VentanaLogin a = new VentanaLogin();

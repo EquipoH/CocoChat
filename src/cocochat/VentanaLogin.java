@@ -36,6 +36,7 @@ public class VentanaLogin extends JFrame
         c4.setBackground(new Color(247,151,29));
         c4.setForeground(Color.black);
         c4.setFont(fuente);
+        c4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         
         JLabel c5 = new JLabel("¿Olvidaste tu contraseña?");
         c5.setFont(fuente); 

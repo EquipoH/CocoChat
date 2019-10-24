@@ -8,6 +8,8 @@ package cocochat;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.MouseInfo;
+import java.awt.Point;
 import javax.swing.GroupLayout;
 import static javax.swing.GroupLayout.Alignment.LEADING;
 import javax.swing.ImageIcon;
@@ -19,9 +21,10 @@ import javax.swing.WindowConstants;
 
 public class VentanaRecuperarContrasena extends JFrame 
 {
-    
+ int x, y;   
     public VentanaRecuperarContrasena()
     {
+         setUndecorated(true); 
         Font fuente = new Font("Gadugi",0,14);
         Font fuente2 = new Font("Gadugi",0,18);
         
@@ -82,6 +85,18 @@ public class VentanaRecuperarContrasena extends JFrame
            ImageIcon icono2 = new ImageIcon(logo2.getImage().getScaledInstance(c4.getWidth(), c4.getWidth(), Image.SCALE_DEFAULT));
            c4.setIcon(icono2);
            setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+           
+           addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                formMouseDragged(evt);
+            }
+        });
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
+        
         }
         
    
@@ -91,5 +106,14 @@ public class VentanaRecuperarContrasena extends JFrame
          VentanaLogin a = new VentanaLogin();
          a.show();
     }
+       private void formMousePressed(java.awt.event.MouseEvent evt) {                                  
+        x=evt.getX();
+        y= evt.getY();
+    }   
+    
+     private void formMouseDragged(java.awt.event.MouseEvent evt) {                                  
+        Point point = MouseInfo.getPointerInfo().getLocation();
+        setLocation(point.x-x, point.y-y);
+    } 
      
 }
