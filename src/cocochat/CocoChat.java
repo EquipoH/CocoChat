@@ -16,7 +16,7 @@ public class CocoChat {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        VentanaLogin a = new VentanaLogin();
+        Chat a = new Chat();
         a.show();
         //VentanaLogin ventanaLogin= new VentanaLogin();
         //ventanaLogin.show();
