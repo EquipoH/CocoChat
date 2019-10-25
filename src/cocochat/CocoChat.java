@@ -27,7 +27,7 @@ public class CocoChat {
         int resultado;
         
         try {
-            cliente = new Socket ("192.168.84.35", 1234);
+            cliente = new Socket ("192.168.1.106", 1234);
                    
     
             //resultado = cliente.getInputStream().read(); //toma un ascii
