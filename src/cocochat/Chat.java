@@ -6,8 +6,11 @@
 package cocochat;
 import java.awt.Color;
 import java.awt.Image;
-import java.awt.List;
+
+import java.util.List;
 import java.util.ArrayList;
+import java.util.Date;
+
 import javax.swing.GroupLayout;
 import static javax.swing.GroupLayout.Alignment.LEADING;
 import javax.swing.ImageIcon;
@@ -31,6 +34,7 @@ public class Chat extends JFrame{
      JButton c4;
      JLabel c5;
      int a;
+     java.util.Date fecha = new Date();
      
     Chat(){
     c1 =  new javax.swing.JFormattedTextField();
@@ -89,8 +93,20 @@ public class Chat extends JFrame{
         this.getContentPane();
         setTitle("CHAT");
         pack();
-        
-        c2.setText("Miguel: Hola\nPintor: Como estas?");   
+        List<pojoMensajesPendientes> al = new ArrayList<pojoMensajesPendientes>();
+        pojoMensajesPendientes []pojo = new pojoMensajesPendientes[6];
+        for (int i=0; i<6;i++){
+        pojo[i] = new pojoMensajesPendientes();
+        pojo[i].setIdMensaje(i);
+        pojo[i].setDestinatario("Gabo");
+        pojo[i].setRemitente("Mike");
+        pojo[i].setFechayhora("20/10/2019");
+        pojo[i].setMensaje("HOLA GUAPO");
+         al.add(pojo[i]);
+          c2.setText(c2.getText()+(pojo[i].getIdMensaje()+pojo[i].getRemitente()+": "+pojo[i].getMensaje()+"\n"));   
+        }
+             
+       
        
         ImageIcon logo2 = new ImageIcon(getClass().getResource("/imagen/flecha5.png"));
         ImageIcon icono2 = new ImageIcon(logo2.getImage().getScaledInstance(c5.getWidth(), c5.getWidth(), Image.SCALE_AREA_AVERAGING));
