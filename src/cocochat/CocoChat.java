@@ -27,6 +27,7 @@ public class CocoChat {
         int resultado;
         
         try {
+            
             cliente = new Socket ("192.168.84.35", 1234);
                    
     
@@ -42,10 +43,10 @@ public class CocoChat {
             }else{
                 System.out.println("Ocurrio un error para conectarse");
             }
-           Chat a = new Chat();
+           
+           
+           VentanaLogin a = new VentanaLogin(cliente);
                  a.show();
-           
-           
            
            
            

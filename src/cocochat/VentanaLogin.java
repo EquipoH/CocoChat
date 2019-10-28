@@ -2,6 +2,7 @@ package cocochat;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.net.Socket;
 import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import static javax.swing.GroupLayout.Alignment.LEADING;
@@ -14,9 +15,10 @@ import javax.swing.JTextPane;
 import javax.swing.WindowConstants;
 
 public class VentanaLogin extends JFrame
-{
-    public VentanaLogin()
+{  Socket vinculo;
+    public VentanaLogin(Socket _vinculo)
     {   
+         this.vinculo=_vinculo;
         Font fuente = new Font("Gadugi",0,14);
         
         JLabel c1 = new JLabel("");
@@ -108,7 +110,7 @@ public class VentanaLogin extends JFrame
      
      private void c6MouseClicked(java.awt.event.MouseEvent evt) {  
          this.hide();
-         VentanaRegistro1 a = new VentanaRegistro1 ();
-         a.show();
+        // VentanaRegistro1 a = new VentanaRegistro1 ();
+         //a.show();
     }
 }

@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.net.Socket;
 import javax.swing.GroupLayout;
 import static javax.swing.GroupLayout.Alignment.LEADING;
 import javax.swing.ImageIcon;
@@ -29,7 +30,10 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  */
 public class VentanaRegistro1 extends JFrame {
     int x, y;
-    VentanaRegistro1(){
+    Socket vinculo;
+    VentanaRegistro1(Socket _vinculo){
+        this.vinculo=_vinculo;
+        
         
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -83,6 +87,7 @@ public class VentanaRegistro1 extends JFrame {
         c19.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MouseClicked19(evt);
+                
             }
         });
     JTextField c2 = new JTextField();
@@ -198,8 +203,8 @@ public class VentanaRegistro1 extends JFrame {
     
      private void MouseClicked19(java.awt.event.MouseEvent evt) {                                     
         this.hide();
-         VentanaLogin a = new VentanaLogin();
-         a.show();
+        // VentanaLogin a = new VentanaLogin();
+         //a.show();
     }
     
     private void c5MouseClicked(java.awt.event.MouseEvent evt) {     
