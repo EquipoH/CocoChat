@@ -25,35 +25,24 @@ public class CocoChat {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-         Socket cliente;
-        String msg;
-        byte[] recepcion = new byte[100];
-        int resultado;
+         
         
         try {
-
+HelperSocket s=new HelperSocket(); 
             
          
-            cliente = new Socket ("192.168.0.5", 1234);
-
-                   DataInputStream entrada=new DataInputStream( cliente.getInputStream());
-                   DataOutputStream salida=new DataOutputStream(cliente.getOutputStream());
-            //resultado = cliente.getInputStream().read(); //toma un ascii
-            //System.out.println(""+resultado);
-            //cliente.getOutputStream().write('7');
-         
-           // cliente.getOutputStream().write(msg.getBytes());
-            if(cliente.isConnected()){
+            
+            if(s.cliente.isConnected()){
                  System.out.println("Se conecto correctamente");
             }else{
                 System.out.println("Ocurrio un error para conectarse");
             }
              String dato;
-           dato=entrada.readUTF();
+           dato=s.entrada.readUTF();
             System.out.println(dato);
             
            
-           VentanaLogin a = new VentanaLogin(cliente);
+           VentanaLogin a = new VentanaLogin(s.entrada,s.salida);
                  a.show();
                  
                  

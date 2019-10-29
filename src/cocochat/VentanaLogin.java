@@ -2,6 +2,9 @@ package cocochat;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.Socket;
 import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
@@ -15,10 +18,13 @@ import javax.swing.JTextPane;
 import javax.swing.WindowConstants;
 
 public class VentanaLogin extends JFrame
-{  Socket vinculo;
-    public VentanaLogin(Socket _vinculo)
+{  
+    DataInputStream entrada;
+    DataOutputStream salida;
+    public VentanaLogin(DataInputStream entrada,DataOutputStream salida)
     {   
-         this.vinculo=_vinculo;
+         this.entrada=entrada;
+         this.salida=salida;
         Font fuente = new Font("Gadugi",0,14);
         
         JLabel c1 = new JLabel("");
@@ -39,6 +45,18 @@ public class VentanaLogin extends JFrame
         c4.setForeground(Color.black);
         c4.setFont(fuente);
         c4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        c4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                try{
+                    salida.writeUTF("a");
+                    System.out.println("Se estan enviando los datos");
+                    salida.writeUTF(c2.getText()+"/"+c3.getText());
+                
+                }catch(IOException e){
+                    System.out.println("Hubo un error enviando los datos al server");
+                }
+            }
+        });
         
         JLabel c5 = new JLabel("¿Olvidaste tu contraseña?");
         c5.setFont(fuente); 
