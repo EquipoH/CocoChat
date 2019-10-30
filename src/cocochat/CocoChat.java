@@ -20,43 +20,8 @@ public class CocoChat {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-         Socket cliente;
-        String msg;
-        byte[] recepcion = new byte[100];
-        int resultado;
-        
-        try {
-            cliente = new Socket ("192.168.84.35", 1234);
-                   
-    
-            //resultado = cliente.getInputStream().read(); //toma un ascii
-            //System.out.println(""+resultado);
-            //cliente.getOutputStream().write('7');
-            cliente.getInputStream().read(recepcion);
-            msg = new String(recepcion);
-            System.out.println(msg);
-           // cliente.getOutputStream().write(msg.getBytes());
-            if(cliente.isConnected()){
-                 System.out.println("Se conecto correctamente");
-            }else{
-                System.out.println("Ocurrio un error para conectarse");
-            }
-           Chat a = new Chat();
-                 a.show();
-           
-           
-           
-           
-           
-            cliente.close();
-        } catch (IOException ex) {
-            Logger.getLogger(CocoChat.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-       
-        //VentanaLogin ventanaLogin= new VentanaLogin();
-        //ventanaLogin.show();
+       Archivos archivo = new Archivos();
+       archivo.escribirMensaje("Rafa", "Hola", "10:58 pm 25/10/19");
     }
     
     
