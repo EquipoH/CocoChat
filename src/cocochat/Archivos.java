@@ -11,62 +11,153 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import pojos.pojoMensajesPendientes;
 
 /**
  *
  * @author Rafael
  */
 public class Archivos {
-
+    private final String ARCHIVO="myJSON.json";
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        Archivos archivo = new Archivos();
-        archivo.leerMensaje();
-    }
-    public void escribirMensaje(String nick, String mensaje, String fechaYHora){
-        try{
-            //¶
-            PrintWriter pw = new PrintWriter("archivo.txt");
-            String texto="Hello everyone";
-            pw.println(texto);
-            pw.close();
-        }catch(IOException e){
-            System.out.println(e.getMessage());
-        }
+    public void Archivos() {
+        
     }
     
-    public void leerMensaje(){
-        try{
-            String linea,nick,mensaje,fechaYHora;
-            File archivo = new File("archivo.txt");//Con esta clase podemos saber si un archivo existe o no
-            archivo.exists();//este metodo nos indica si el archivo existe o no
-            FileReader fr = new FileReader("archivo.txt");
-            BufferedReader br = new BufferedReader(fr);
-            while((linea=br.readLine())!=null){
-                for(int i=0;i<linea.length();i++){
-                    if(linea.substring(i, 4).equals("nick:")){
-                        int finNick;
-                        for(int j=i+4;linea.charAt(j)!='/';j++){
-                            
-                        }
-                        nick = linea.substring(i,4);
-                        System.out.println("Nick: "+nick);
-                    }else if(linea.substring(i, 7).equals("mensaje:")){
-                        mensaje = linea.substring(i,7);
-                        System.out.println("Mensaje: "+mensaje);
+    
+    public void ejemplos(){
+        Archivos archivo = new Archivos();
+        //------------------------------Escribir en un archivo--------------------------------------------------------------
+        pojoMensajesPendientes mensaje = new pojoMensajesPendientes(
+                3.0/*Id del mensaje*/,
+                "Emilio"/*Remitente*/,
+                "Pintor"/*Destinatario*/,
+                archivo.getHoraYFecha()/*Hora y fecha actual*/,
+                "¿Qué tiene we?"/*Texto del mensaje*/);
+        archivo.escribirMensaje(mensaje);
+        //------------------------------------------------------------------------------------------------------------------
+
+        //--------------Leer un archivo(Imprime en consola todos los mensajes), devuelve un pojo del ultimo mensaje---------
+         pojoMensajesPendientes msg = archivo.leerMensaje();
+        //------------------------------------------------------------------------------------------------------------------
+    }
+    
+    public void escribirMensaje(pojoMensajesPendientes mensaje){
+            //¶
+            double idMensaje = mensaje.getIdMensaje();
+            String remitente = mensaje.getRemitente();
+            String destinatario = mensaje.getDestinatario();
+            String fechayhora = mensaje.getFechayhora();
+            String texto = mensaje.getMensaje();
+            
+           
+            JSONObject json = new JSONObject();
+            JSONObject msj = new JSONObject();
+            JSONArray mensajes = new JSONArray();
+            try {
+
+                msj.put("idMensaje",String.format("%d",(long)idMensaje));
+                msj.put("remitente",remitente);
+                msj.put("destinatario",destinatario);
+                msj.put("fechayhora",fechayhora);
+                msj.put("texto",texto);
+                
+
+
+                
+                File file = new File(ARCHIVO);//Con esta clase podemos saber si un archivo existe o no
+                if(file.exists()){//este metodo nos indica si el archivo existe o no
+                    FileReader fr = new FileReader(ARCHIVO);
+                    BufferedReader br = new BufferedReader(fr);
+
+                    String linea, textoArchivo="";
+                    while((linea=br.readLine())!=null){
+                      textoArchivo+=linea;
                     }
-                    else if(linea.substring(i, 11).equals("fechaYHora:")){
-                        fechaYHora = linea.substring(i,11);
-                        System.out.println("Fecha Y Hora: "+fechaYHora);
-                    }
+                    
+                    JSONObject lectorJSON = new JSONObject(textoArchivo);
+                    mensajes = lectorJSON.getJSONArray("mensajes");
+                    mensajes.put(msj);
+                    json.put("mensajes", mensajes);
+                    
+                    PrintWriter pw = new PrintWriter(ARCHIVO);
+                    pw.println(json.toString());
+                    pw.close();
+                }else{
+                    mensajes.put(msj);
+                    json.put("mensajes", mensajes);
+                    PrintWriter pw = new PrintWriter(ARCHIVO);
+                    pw.println(json.toString());
+                    pw.close();
                 }
+            }catch (JSONException ex) {
+                System.out.println("Error json");
+            } catch (FileNotFoundException ex) {
+                System.out.println("Error archivo");
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+        }
+    }
+    public pojoMensajesPendientes leerMensaje(){
+        pojoMensajesPendientes msg;
+        double idMensaje=0.0;
+        String remitente="";
+        String destinatario="";
+        String fechayhora="";
+        String texto="";
+        try{
+
+            File file = new File(ARCHIVO);//Con esta clase podemos saber si un archivo existe o no
+            if(file.exists()){//este metodo nos indica si el archivo existe o no
+                FileReader fr = new FileReader(ARCHIVO);
+                BufferedReader br = new BufferedReader(fr);
+
+                String linea, textoArchivo="";
+                while((linea=br.readLine())!=null){
+                  textoArchivo+=linea;
+                }
+
+                JSONObject lectorJSON = new JSONObject(textoArchivo);
+                JSONArray mensajes = lectorJSON.getJSONArray("mensajes");
+                JSONObject mensaje;
+                for (int i=0;i<mensajes.length();i++){
+                    mensaje = mensajes.getJSONObject(i);
+                    idMensaje = mensaje.getDouble("idMensaje");
+                    remitente = mensaje.getString("remitente");
+                    destinatario = mensaje.getString("destinatario");
+                    fechayhora = mensaje.getString("fechayhora");
+                    texto = mensaje.getString("texto");
+                    System.out.println("idMensaje: "+ String.format("%d",(long)idMensaje));
+                    System.out.println("remitente: "+ remitente);
+                    System.out.println("destinatario: "+ destinatario);
+                    System.out.println("fechayhora: " + fechayhora);
+                    System.out.println("texto: "+ texto);
+                    System.out.println("-----------------");
+                }
+            }else{
+                System.out.println("No se encontró el archivo json.");
             }
         }catch(FileNotFoundException err){
             System.out.println(err.getMessage());
         }catch(IOException e){
             System.out.println(e.getMessage());
+        }catch (JSONException ex) {
+                System.out.println("Error json");
         }
+        msg = new pojoMensajesPendientes(idMensaje,remitente,destinatario,fechayhora,texto);
+        return msg;
+    }
+    
+    public String getHoraYFecha(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");  
+        LocalDateTime now = LocalDateTime.now();  
+        return dtf.format(now);
     }
 }
