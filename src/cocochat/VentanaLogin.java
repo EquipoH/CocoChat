@@ -12,10 +12,12 @@ import static javax.swing.GroupLayout.Alignment.LEADING;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import com.google.gson.Gson;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.WindowConstants;
+import pojos.pojoUsuario;
 
 public class VentanaLogin extends JFrame
 {  
@@ -49,6 +51,14 @@ public class VentanaLogin extends JFrame
                     hSocket.salida.writeUTF("a");
                     System.out.println("Se estan enviando los datos");
                     hSocket.salida.writeUTF(c2.getText()+"/"+c3.getText());
+                    String response=hSocket.entrada.readUTF();
+                    if(response.equals("null")){
+                        System.out.println("El usuario no existe");
+                    }else{
+                    Gson gson=new Gson();
+                        pojoUsuario user = gson.fromJson(response, pojoUsuario.class);
+                        System.out.println(user.getCorreo());
+                    }
                     
                 
                 }catch(IOException e){

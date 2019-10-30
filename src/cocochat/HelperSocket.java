@@ -8,8 +8,7 @@ package cocochat;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+
 import java.net.Socket;
 
 /**
@@ -21,17 +20,16 @@ public class HelperSocket {
     public Socket cliente;
     public DataInputStream entrada;
     public DataOutputStream salida;
-    public ObjectInputStream entradaO;
-    public ObjectOutputStream salidaO;
+
     
       public HelperSocket(){
       try{
-      cliente = new Socket ("192.168.0.5", 123);
-
+      cliente = new Socket ("localhost", 123);
       
-                   entrada=new DataInputStream( cliente.getInputStream());
+      
+                   entrada=new DataInputStream(cliente.getInputStream());
                    salida=new DataOutputStream(cliente.getOutputStream());
-                   
+      
             
       }catch(IOException e){
       }
