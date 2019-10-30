@@ -26,10 +26,12 @@ public class HelperSocket {
     
       public HelperSocket(){
       try{
-      cliente = new Socket ("192.168.0.5", 1234);
+      cliente = new Socket ("192.168.0.5", 123);
 
+      
                    entrada=new DataInputStream( cliente.getInputStream());
                    salida=new DataOutputStream(cliente.getOutputStream());
+                   
             
       }catch(IOException e){
       }

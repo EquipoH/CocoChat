@@ -19,12 +19,10 @@ import javax.swing.WindowConstants;
 
 public class VentanaLogin extends JFrame
 {  
-    DataInputStream entrada;
-    DataOutputStream salida;
-    public VentanaLogin(DataInputStream entrada,DataOutputStream salida)
+    HelperSocket hSocket;
+    public VentanaLogin(HelperSocket s)
     {   
-         this.entrada=entrada;
-         this.salida=salida;
+         this.hSocket=s;
         Font fuente = new Font("Gadugi",0,14);
         
         JLabel c1 = new JLabel("");
@@ -48,9 +46,10 @@ public class VentanaLogin extends JFrame
         c4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 try{
-                    salida.writeUTF("a");
+                    hSocket.salida.writeUTF("a");
                     System.out.println("Se estan enviando los datos");
-                    salida.writeUTF(c2.getText()+"/"+c3.getText());
+                    hSocket.salida.writeUTF(c2.getText()+"/"+c3.getText());
+                    
                 
                 }catch(IOException e){
                     System.out.println("Hubo un error enviando los datos al server");

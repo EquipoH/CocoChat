@@ -42,7 +42,7 @@ HelperSocket s=new HelperSocket();
             System.out.println(dato);
             
            
-           VentanaLogin a = new VentanaLogin(s.entrada,s.salida);
+           VentanaLogin a = new VentanaLogin(s);
                  a.show();
                  
                  
