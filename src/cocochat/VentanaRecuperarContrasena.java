@@ -103,8 +103,8 @@ public class VentanaRecuperarContrasena extends JFrame
         
        private void c4MouseClicked(java.awt.event.MouseEvent evt) {  
          this.hide();
-         VentanaLogin a = new VentanaLogin();
-         a.show();
+        // VentanaLogin a = new VentanaLogin();
+         //a.show();
     }
        private void formMousePressed(java.awt.event.MouseEvent evt) {                                  
         x=evt.getX();
