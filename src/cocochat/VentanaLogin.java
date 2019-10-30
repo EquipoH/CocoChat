@@ -2,11 +2,9 @@ package cocochat;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
+
 import java.io.IOException;
-import java.net.Socket;
-import javax.imageio.ImageIO;
+
 import javax.swing.GroupLayout;
 import static javax.swing.GroupLayout.Alignment.LEADING;
 import javax.swing.ImageIcon;
@@ -15,12 +13,11 @@ import javax.swing.JFrame;
 import com.google.gson.Gson;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.WindowConstants;
 import pojos.pojoUsuario;
 
 public class VentanaLogin extends JFrame
-{  
+{  JTextField c2;
     HelperSocket hSocket;
     public VentanaLogin(HelperSocket s)
     {   
@@ -28,7 +25,7 @@ public class VentanaLogin extends JFrame
         Font fuente = new Font("Gadugi",0,14);
         
         JLabel c1 = new JLabel("");
-        JTextField c2 = new JTextField("");
+       c2 = new JTextField("");
         c2.setFont(fuente); 
         c2.setBackground(new Color(200,255,255));
         c2.setBorder(null);
@@ -86,8 +83,10 @@ public class VentanaLogin extends JFrame
         
         c6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                c6MouseClicked(evt);
+               VentanaRegistro1 ventana=new VentanaRegistro1(hSocket);
+               ventana.show();
             }
+            
         });
 
         GroupLayout layout = new GroupLayout( getContentPane() );
@@ -130,8 +129,8 @@ public class VentanaLogin extends JFrame
     }   
     
      private void c5MouseClicked(java.awt.event.MouseEvent evt) {  
-         this.hide();
-         VentanaRecuperarContrasena a = new VentanaRecuperarContrasena();
+         
+         VentanaRecuperarContrasena a = new VentanaRecuperarContrasena(hSocket,c2.getText());
          a.show();
     }
      

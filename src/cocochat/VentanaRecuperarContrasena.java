@@ -5,25 +5,34 @@
  */
 package cocochat;
 
+import com.google.gson.Gson;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import static java.awt.image.ImageObserver.HEIGHT;
+import java.io.IOException;
 import javax.swing.GroupLayout;
 import static javax.swing.GroupLayout.Alignment.LEADING;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 import javax.swing.WindowConstants;
+import pojos.pojoUsuario;
 
 public class VentanaRecuperarContrasena extends JFrame 
 {
  int x, y;   
-    public VentanaRecuperarContrasena()
+ HelperSocket hSocket;
+ String correo;
+    public VentanaRecuperarContrasena(HelperSocket hSocket,String correo)
     {
+        this.hSocket=hSocket;
+        this.correo=correo;
          setUndecorated(true); 
         Font fuente = new Font("Gadugi",0,14);
         Font fuente2 = new Font("Gadugi",0,18);
@@ -47,6 +56,33 @@ public class VentanaRecuperarContrasena extends JFrame
         JButton c3 = new JButton("Recuperar mi contraseña");
         c3.setFont(fuente); 
         c3.setBackground(new Color(247,151,29));
+        c3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+               
+                try {
+                  System.out.println("Se intenta recuperar un contraseña");
+                    
+                  hSocket.salida.writeUTF("e");
+                  hSocket.salida.writeUTF(correo+"/"+c2.getText());
+                  
+                  String response = hSocket.entrada.readUTF();
+                  
+                    
+                    
+                  
+                    if(response.equals("null")){
+                        JOptionPane.showMessageDialog(null,"El correo o el color es incorrecto", "cocoChat", HEIGHT);
+                    }else{
+                     JOptionPane.showMessageDialog(null,"La contraseña es: "+response, "cocoChat" , HEIGHT);
+                    }
+
+
+                } catch (IOException e) {
+
+                }
+                
+            }
+        }); 
         
         JLabel c4 = new JLabel("");
         c4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
