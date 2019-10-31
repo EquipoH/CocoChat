@@ -40,7 +40,8 @@ public class Archivos {
                 "Emilio"/*Remitente*/,
                 "Pintor"/*Destinatario*/,
                 archivo.getHoraYFecha()/*Hora y fecha actual*/,
-                "¿Qué tiene we?"/*Texto del mensaje*/);
+                "¿Qué tiene we?"/*Texto del mensaje*/,
+                'N'/*Leido o No leido*/);
         archivo.escribirMensaje(mensaje);
         //------------------------------------------------------------------------------------------------------------------
 
@@ -68,6 +69,7 @@ public class Archivos {
                 msj.put("destinatario",destinatario);
                 msj.put("fechayhora",fechayhora);
                 msj.put("texto",texto);
+                msj.put("leido","N");
                 
 
 
@@ -112,6 +114,8 @@ public class Archivos {
         String destinatario="";
         String fechayhora="";
         String texto="";
+        String leido="";
+        
         try{
 
             File file = new File(ARCHIVO);//Con esta clase podemos saber si un archivo existe o no
@@ -136,6 +140,7 @@ public class Archivos {
                     destinatario = mensaje.getString("destinatario");
                     fechayhora = mensaje.getString("fechayhora");
                     texto = mensaje.getString("texto");
+                    leido = mensaje.getString("leido");
                     }
                     System.out.println("idMensaje: "+ String.format("%d",(long)idMensaje));
                     System.out.println("remitente: "+ remitente);
@@ -154,7 +159,7 @@ public class Archivos {
         }catch (JSONException ex) {
                 System.out.println("Error json");
         }
-        msg = new pojoMensajesPendientes(idMensaje,remitente,destinatario,fechayhora,texto);
+        msg = new pojoMensajesPendientes(idMensaje,remitente,destinatario,fechayhora,texto,leido.charAt(0));
         return msg;
     }
     

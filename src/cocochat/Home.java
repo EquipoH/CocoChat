@@ -46,6 +46,29 @@ public class Home extends JFrame {
         JButton c11 = new JButton("Solicitud");
         JButton c12 = new JButton("Crear Grupo");
 
+        c5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                try {
+                    hSocket.salida.writeUTF("g");
+                    hSocket.salida.writeUTF(myUser.getUsuario());
+                    String json = hSocket.entrada.readUTF();
+                    ArrayList<pojoGrupo> arreglo = new ArrayList<pojoGrupo>();
+
+                    java.lang.reflect.Type listTyspe = listTyspe = new TypeToken<ArrayList<pojoGrupo>>() {
+                    }.getType();
+                    arreglo = new Gson().fromJson(json, listTyspe);
+                    c5.removeAllItems();
+                    for (pojoGrupo grupo : arreglo) {
+                        c5.addItem(grupo.getNombre());
+                    }
+
+                } catch (IOException e) {
+                }
+            }
+        });
+        
+        
+        
         //c11.setBackground(new Color(24, 84, 245));
         c11.setForeground(Color.BLACK);
         c11.addMouseListener(new java.awt.event.MouseAdapter() {
