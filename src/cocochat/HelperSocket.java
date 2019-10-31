@@ -16,24 +16,29 @@ import java.net.Socket;
  * @author bonnesbaby14
  */
 public class HelperSocket {
-    
+
     public Socket cliente;
     public DataInputStream entrada;
     public DataOutputStream salida;
 
-    
-      public HelperSocket(){
-      try{
-      cliente = new Socket ("localhost", 123);
-      
-      
-                   entrada=new DataInputStream(cliente.getInputStream());
-                   salida=new DataOutputStream(cliente.getOutputStream());
-      
-            
-      }catch(IOException e){
-      }
-      
-      }
-    
+    public void closeSocket() {
+        try {
+            this.cliente.close();
+        } catch (IOException e) {
+
+        }
+    }
+
+    public HelperSocket() {
+        try {
+            cliente = new Socket("localhost", 123);
+
+            entrada = new DataInputStream(cliente.getInputStream());
+            salida = new DataOutputStream(cliente.getOutputStream());
+
+        } catch (IOException e) {
+        }
+
+    }
+
 }
