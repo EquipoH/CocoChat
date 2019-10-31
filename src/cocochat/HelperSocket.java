@@ -34,7 +34,7 @@ public class HelperSocket {
 
     public HelperSocket() {
         try {
-            cliente = new Socket("localhost", 123);
+            cliente = new Socket("192.168.1.101", 123);
 
             entrada = new DataInputStream(cliente.getInputStream());
             salida = new DataOutputStream(cliente.getOutputStream());
