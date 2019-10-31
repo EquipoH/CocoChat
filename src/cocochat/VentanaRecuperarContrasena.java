@@ -60,6 +60,9 @@ public class VentanaRecuperarContrasena extends JFrame
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                
                 try {
+                  if(c2.getText().equals("")){
+                     JOptionPane.showMessageDialog(null,"Escribe el color y tu correo ", "cocoChat" , HEIGHT);
+                    }else{
                   System.out.println("Se intenta recuperar un contraseña");
                     
                   hSocket.salida.writeUTF("e");
@@ -76,7 +79,7 @@ public class VentanaRecuperarContrasena extends JFrame
                      JOptionPane.showMessageDialog(null,"La contraseña es: "+response, "cocoChat" , HEIGHT);
                     }
 
-
+                  }
                 } catch (IOException e) {
 
                 }

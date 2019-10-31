@@ -121,6 +121,9 @@ public class VentanaRegistro1 extends JFrame {
         c7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 try {
+                    if(c4.getText().equals("")|| c2.getText().equals("")|| c3.getText().equals("")|| c5.getText().equals("")|| c6.getText().equals("")){
+                     JOptionPane.showMessageDialog(null,"Llena todos los campos ", "cocoChat" , HEIGHT);
+                    }else{
                   System.out.println("Se intenta hacer un registro");
                     Gson gson = new Gson();
                     hSocket.salida.writeUTF("b");
@@ -138,7 +141,7 @@ public class VentanaRegistro1 extends JFrame {
                     }else{
                      JOptionPane.showMessageDialog(null,"el usuario no se creo con existo", "cocoChat" , HEIGHT);
                     }
-
+               }
 
                 } catch (IOException e) {
 
