@@ -44,6 +44,14 @@ public class Home extends JFrame {
         
         //c11.setBackground(new Color(24, 84, 245));
         c11.setForeground(Color.BLACK);
+        c11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                
+               VentanaSolicitudEntrante ventana=new VentanaSolicitudEntrante();
+               ventana.show();
+            }
+          });
+       
         //c12.setBackground(new Color(28, 241, 32));
         c12.setForeground(Color.BLACK);
          

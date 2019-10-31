@@ -79,6 +79,7 @@ public class VentanaLogin extends JFrame
         });
         
         
+        
         JLabel c6 = new JLabel("¿No tienes una cuenta? ¡Registrate gratis!");
         c6.setFont(fuente); 
         c6.setForeground(Color.white);
