@@ -11,6 +11,15 @@ public class pojoMensajesPendientes
     public pojoMensajesPendientes() {
     }
 
+    /**
+     * 
+     * @param idMensaje Es el identificador del mensaje
+     * @param remitente Es un foreign key hacia la tabla de usuarios del usuario que envia el mensaje
+     * @param destinatario Es un foreign key hacia la tabla de usuarios del usuario que recibe el mensaje
+     * @param fechayhora Es la fecha y hora en la que se envio el mensaje
+     * @param mensaje Es el contenido del mensaje
+     * @param leido Bandera que indica si el mensaje ha sido leido o no
+     */
     public pojoMensajesPendientes(double idMensaje, String remitente, String destinatario, String fechayhora, String mensaje,char leido) {
         this.idMensaje = idMensaje;
         this.remitente = remitente;

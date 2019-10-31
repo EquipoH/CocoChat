@@ -34,6 +34,9 @@ public class Archivos {
 
     }
 
+    /**
+     * Funcion de ejemplo para ver como leer  escribir un mensaje con esta clase
+     */
     public void ejemplos() {
         Archivos archivo = new Archivos();
         //------------------------------Escribir en un archivo--------------------------------------------------------------
@@ -51,8 +54,11 @@ public class Archivos {
         //------------------------------------------------------------------------------------------------------------------
     }
 
+    /**
+     * Esta funcion recibe un pojo de mensaje y lo escribe en el archivo JSON del usuario.
+     * @param mensaje pojo de mensaje a escribir en JSON.
+     */
     public void escribirMensaje(pojoMensajesPendientes mensaje) {
-        //¶
         double idMensaje = mensaje.getIdMensaje();
         String remitente = mensaje.getRemitente();
         String destinatario = mensaje.getDestinatario();
@@ -105,6 +111,12 @@ public class Archivos {
         }
     }
 
+    /**
+     * Esta funcion recibe el destinatario y el remitente del que se quiere leer un mensaje.
+     * @param destino 
+     * @param remitentes
+     * @return 
+     */
     public ArrayList<pojoMensajesPendientes> leerMensaje(String destino, String remitentes) {
         ArrayList<pojoMensajesPendientes> arreglo = new ArrayList<pojoMensajesPendientes>();
 
