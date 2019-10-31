@@ -24,6 +24,9 @@ public class HelperSocket {
     public void closeSocket() {
         try {
             this.cliente.close();
+            this.salida.close();
+            this.entrada.close();
+            
         } catch (IOException e) {
 
         }
