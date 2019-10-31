@@ -45,21 +45,21 @@ public class Home extends JFrame {
         JButton c10 = new JButton("Chat");
         JButton c11 = new JButton("Solicitud");
         JButton c12 = new JButton("Crear Grupo");
-        
+
         //c11.setBackground(new Color(24, 84, 245));
         c11.setForeground(Color.BLACK);
         c11.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                
-               VentanaSolicitudEntrante ventana=new VentanaSolicitudEntrante();
-               ventana.show();
+
+                VentanaSolicitudEntrante ventana = new VentanaSolicitudEntrante();
+                ventana.show();
             }
-          });
-       
+        });
+
         //c12.setBackground(new Color(28, 241, 32));
         c12.setForeground(Color.BLACK);
-         
-        c4.setBackground(new Color(247,151,29));
+
+        c4.setBackground(new Color(247, 151, 29));
         c4.setForeground(Color.black);
         c4.setFont(fuente);
 
@@ -77,9 +77,10 @@ public class Home extends JFrame {
                     String[] usuarios = usuarioS.split("/");
                     c4.removeAllItems();
                     for (String usuario : usuarios) {
-                        if(usuario.equals("me cerre")){
-                        }else{
-                        c4.addItem(usuario);}
+                        if (usuario.equals("me cerre")) {
+                        } else {
+                            c4.addItem(usuario);
+                        }
                         System.out.println(usuario);
                     }
 
@@ -88,7 +89,7 @@ public class Home extends JFrame {
             }
         });;
 
-          c2.setHorizontalAlignment(JLabel.CENTER);
+        c2.setHorizontalAlignment(JLabel.CENTER);
         c2.setVerticalAlignment(JLabel.CENTER);
         c2.setFont(fuente);
         c2.setOpaque(true);
@@ -98,13 +99,14 @@ public class Home extends JFrame {
                 //actualizar usuaruos conectados
                 try {
                     hSocket.salida.writeUTF("g");
-                      hSocket.salida.writeUTF(myUser.getUsuario());
-                    String json=hSocket.entrada.readUTF();
-                          ArrayList<pojoGrupo> arreglo=new ArrayList<pojoGrupo>();
-      
-       java.lang.reflect.Type listTyspe=listTyspe = new TypeToken<ArrayList<pojoGrupo>>(){}.getType();
-       arreglo=new Gson().fromJson(json,listTyspe);
-               c5.removeAllItems();
+                    hSocket.salida.writeUTF(myUser.getUsuario());
+                    String json = hSocket.entrada.readUTF();
+                    ArrayList<pojoGrupo> arreglo = new ArrayList<pojoGrupo>();
+
+                    java.lang.reflect.Type listTyspe = listTyspe = new TypeToken<ArrayList<pojoGrupo>>() {
+                    }.getType();
+                    arreglo = new Gson().fromJson(json, listTyspe);
+                    c5.removeAllItems();
                     for (pojoGrupo grupo : arreglo) {
                         c5.addItem(grupo.getNombre());
                     }
@@ -125,12 +127,9 @@ public class Home extends JFrame {
                 try {
                     hSocket.salida.writeUTF("h");
                     hSocket.salida.writeUTF(myUser.getUsuario());
-                    String json=hSocket.entrada.readUTF();
-                    Gson gson=new Gson();
-                    
-                    
-                    
-                    
+                    String json = hSocket.entrada.readUTF();
+                    Gson gson = new Gson();
+
                     c4.removeAllItems();
 //                    for (String usuario : usuarios) {
 //                        if(usuario.equals("me cerre")){
@@ -141,6 +140,17 @@ public class Home extends JFrame {
 
                 } catch (IOException e) {
                 }
+            }
+        });;
+        c7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                //actualizar usuaruos conectados
+              
+                String user =c4.getSelectedItem().toString();
+                Chat chat=new Chat(user,myUser.getUsuario());
+                chat.show();
+                
+                
             }
         });;
 
@@ -154,23 +164,21 @@ public class Home extends JFrame {
                         .addComponent(c1, 150, 300, 450)
                         .addComponent(c4, 150, 300, 450)
                         .addGroup(layout.createSequentialGroup()
-                        .addComponent(c7, 150,150, 150)
-                        .addComponent(c8, 150,150,150)
+                                .addComponent(c7, 150, 150, 150)
+                                .addComponent(c8, 150, 150, 150)
                         )
-                        
-                        
                 )
                 .addGroup(layout.createParallelGroup()
                         .addComponent(c2, 150, 300, 450)
                         .addComponent(c5, 150, 300, 450)
-                        .addComponent(c9,150,300,450)
-                        .addComponent(c11,150,150,250)
+                        .addComponent(c9, 150, 300, 450)
+                        .addComponent(c11, 150, 150, 250)
                 )
                 .addGroup(layout.createParallelGroup()
                         .addComponent(c3, 150, 300, 450)
                         .addComponent(c6, 150, 300, 450)
-                        .addComponent(c10,150,300,450)
-                        .addComponent(c12,150,150,250)
+                        .addComponent(c10, 150, 300, 450)
+                        .addComponent(c12, 150, 150, 250)
                 )
         );
 
@@ -187,19 +195,18 @@ public class Home extends JFrame {
                 )
                 .addGroup(layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
-                        .addComponent(c7,20,30,40)
+                                .addComponent(c7, 20, 30, 40)
                         )
-                        .addComponent(c8, 20,30,40)
-                        .addComponent(c9,20,30,40)
+                        .addComponent(c8, 20, 30, 40)
+                        .addComponent(c9, 20, 30, 40)
                         .addGap(230)
-                        .addComponent(c10,20,30,40)
+                        .addComponent(c10, 20, 30, 40)
                         .addGap(230)
                 )
                 .addGroup(layout.createParallelGroup()
-                        .addComponent(c11,20,30,40)
-                        .addComponent(c12,20,30,40)
+                        .addComponent(c11, 20, 30, 40)
+                        .addComponent(c12, 20, 30, 40)
                 )
-                
         );
 
         setTitle("CocoChat");
