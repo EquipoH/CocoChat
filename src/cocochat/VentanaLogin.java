@@ -11,7 +11,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import com.google.gson.Gson;
+import static java.awt.image.ImageObserver.HEIGHT;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import pojos.pojoUsuario;
@@ -46,8 +48,13 @@ public class VentanaLogin extends JFrame
         c4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 try{
+                     if(c2.getText().equals("")|| c3.getText().equals("")){
+                     JOptionPane.showMessageDialog(null,"Llena todos los campos ", "cocoChat" , HEIGHT);
+                    } else{
                     hSocket.salida.writeUTF("a");
                     System.out.println("Se estan enviando los datos");
+                  
+                   
                     hSocket.salida.writeUTF(c2.getText()+"/"+c3.getText());
                     String response=hSocket.entrada.readUTF();
                     if(response.equals("null")){
@@ -66,7 +73,7 @@ public class VentanaLogin extends JFrame
                         home.show();
                        
                     }
-                    
+                  }
                 
                 }catch(IOException e){
                     System.out.println("Hubo un error enviando los datos al server");
