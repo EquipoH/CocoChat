@@ -123,7 +123,7 @@ public class VentanaLogin extends JFrame
         this.getContentPane().setBackground(new Color(26,26,26));
         setTitle("Login");
         pack();
-        
+        setLocationRelativeTo(null);
         ImageIcon logo = new ImageIcon(getClass().getResource("/imagen/logo.png"));
         ImageIcon icono = new ImageIcon(logo.getImage().getScaledInstance(c1.getWidth(), c1.getWidth(), Image.SCALE_DEFAULT));
         

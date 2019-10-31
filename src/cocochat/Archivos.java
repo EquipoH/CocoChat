@@ -44,8 +44,8 @@ public class Archivos {
         archivo.escribirMensaje(mensaje);
         //------------------------------------------------------------------------------------------------------------------
 
-        //--------------Leer un archivo(Imprime en consola todos los mensajes), devuelve un pojo del ultimo mensaje---------
-         pojoMensajesPendientes msg = archivo.leerMensaje();
+        //--------------Leer un archivo(Imprime en consola todos los mensajes), devuelve el pojo del id que le mandas---------
+         pojoMensajesPendientes msg = archivo.leerMensaje(1.0);
         //------------------------------------------------------------------------------------------------------------------
     }
     
@@ -105,7 +105,7 @@ public class Archivos {
                 System.out.println(ex.getMessage());
         }
     }
-    public pojoMensajesPendientes leerMensaje(){
+    public pojoMensajesPendientes leerMensaje(Double idMsg){
         pojoMensajesPendientes msg;
         double idMensaje=0.0;
         String remitente="";
@@ -128,12 +128,15 @@ public class Archivos {
                 JSONArray mensajes = lectorJSON.getJSONArray("mensajes");
                 JSONObject mensaje;
                 for (int i=0;i<mensajes.length();i++){
+                    
                     mensaje = mensajes.getJSONObject(i);
+                    if(idMsg == mensaje.getDouble("idMensaje")){
                     idMensaje = mensaje.getDouble("idMensaje");
                     remitente = mensaje.getString("remitente");
                     destinatario = mensaje.getString("destinatario");
                     fechayhora = mensaje.getString("fechayhora");
                     texto = mensaje.getString("texto");
+                    }
                     System.out.println("idMensaje: "+ String.format("%d",(long)idMensaje));
                     System.out.println("remitente: "+ remitente);
                     System.out.println("destinatario: "+ destinatario);
