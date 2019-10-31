@@ -123,6 +123,7 @@ public class Chat extends JFrame implements Runnable{
                 .addComponent(c4, 30,30,30))
         );
       
+         
         this.getContentPane();
         setTitle("CHAT");
         pack();
