@@ -217,7 +217,7 @@ public class VentanaRegistro1 extends JFrame {
 
         setTitle("REGISTRO");
         pack();
-
+        setLocationRelativeTo(null);
         ImageIcon logo2 = new ImageIcon(getClass().getResource("/imagen/flecha5.png"));
         ImageIcon icono2 = new ImageIcon(logo2.getImage().getScaledInstance(c19.getWidth(), c19.getWidth(), Image.SCALE_AREA_AVERAGING));
         c19.setIcon(icono2);

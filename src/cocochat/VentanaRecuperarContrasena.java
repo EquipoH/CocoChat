@@ -117,6 +117,7 @@ public class VentanaRecuperarContrasena extends JFrame
         
            setTitle("Recuperar mi contraseña");
            pack();
+           setLocationRelativeTo(null);
            ImageIcon logo2 = new ImageIcon(getClass().getResource("/imagen/flecha5.png"));
            ImageIcon icono2 = new ImageIcon(logo2.getImage().getScaledInstance(c4.getWidth(), c4.getWidth(), Image.SCALE_DEFAULT));
            c4.setIcon(icono2);
