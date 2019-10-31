@@ -54,7 +54,9 @@ public class VentanaLogin extends JFrame
                     }else{
                     Gson gson=new Gson();
                         pojoUsuario user = gson.fromJson(response, pojoUsuario.class);
-                        System.out.println(user.getCorreo());
+                        Home home=new Home(hSocket,user);
+                       cerrar(evt);
+                        home.show();
                     }
                     
                 
@@ -134,7 +136,7 @@ public class VentanaLogin extends JFrame
          a.show();
     }
      
-     private void c6MouseClicked(java.awt.event.MouseEvent evt) {  
+     public void cerrar(java.awt.event.MouseEvent evt) {  
          this.hide();
         // VentanaRegistro1 a = new VentanaRegistro1 ();
          //a.show();
