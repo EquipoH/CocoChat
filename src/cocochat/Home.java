@@ -17,14 +17,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.WindowConstants;
 import pojos.pojoGrupo;
+import pojos.pojoMensajesPendientes;
 import pojos.pojoUsuario;
 
-public class Home extends JFrame {
+public class Home extends JFrame implements Runnable {
 
     HelperSocket hSocket;
     pojoUsuario myUser;
 
     public Home(HelperSocket hSocket, pojoUsuario myUser) {
+        Thread hilo=new Thread(this);
+    hilo.start();
         this.hSocket = hSocket;
         this.myUser = myUser;
 
@@ -242,5 +245,23 @@ public class Home extends JFrame {
                 hSocket.closeSocket();
             }
         });
+    }
+
+    @Override
+    public void run() {
+     while(true){
+         try{
+                 String jason=hSocket.entrada.readUTF();
+               
+                Gson gson =new Gson();
+                pojoMensajesPendientes s=gson.fromJson(jason,pojoMensajesPendientes.class);
+                System.out.println(s.getMensaje()); 
+                 
+             }catch(IOException e){
+            
+            }
+        }
+    
+    
     }
 }

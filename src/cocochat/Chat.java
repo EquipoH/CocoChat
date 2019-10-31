@@ -31,7 +31,8 @@ import pojos.pojoMensajesPendientes;
  *
  * @author migue
  */
-public class Chat extends JFrame implements Runnable{
+public class Chat extends JFrame{
+    
      JTextArea c2;
      JFormattedTextField c1;
      JTextField c3;
@@ -47,6 +48,7 @@ public class Chat extends JFrame implements Runnable{
         this.destino=destino;
         this.remitente=remitente;
         this.hSocket=hSocket;
+        
         
     c1 =  new javax.swing.JFormattedTextField();
     c1.setText("");
@@ -147,21 +149,7 @@ public class Chat extends JFrame implements Runnable{
         c5.setIcon(icono2);
     }    
 
-    @Override
-    public void run() {
-        while(true){
-         try{
-                 String jason=hSocket.entrada.readUTF();
-               
-                Gson gson =new Gson();
-                pojoMensajesPendientes s=gson.fromJson(jason,pojoMensajesPendientes.class);
-                System.out.println(s.getMensaje()); 
-                 
-             }catch(IOException e){
-            
-            }
-        }
-    }
+   
      
      
 }
