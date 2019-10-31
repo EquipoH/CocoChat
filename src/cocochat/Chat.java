@@ -100,6 +100,7 @@ public class Chat extends JFrame implements Runnable {
                             (mensaje.getDestinatario().equals(remitente) &&
                             mensaje.getRemitente().equals(destino))){
                         aux=c2.getText() + (mensaje.getIdMensaje() + mensaje.getRemitente() + ": " + mensaje.getMensaje() + "\n");
+                        c2.setText(aux);
                     }
                     
                 }
