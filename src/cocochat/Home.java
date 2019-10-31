@@ -147,8 +147,9 @@ public class Home extends JFrame {
                 //actualizar usuaruos conectados
               
                 String user =c4.getSelectedItem().toString();
-                Chat chat=new Chat(user,myUser.getUsuario());
+                Chat chat=new Chat(user,myUser.getUsuario(),hSocket);
                 chat.show();
+                
                 
                 
             }

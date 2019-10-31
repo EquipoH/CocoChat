@@ -6,16 +6,26 @@ public class pojoMensajesPendientes
     private String destinatario;
     private String fechayhora;
     private String mensaje;
+    private char leido;
 
     public pojoMensajesPendientes() {
     }
 
-    public pojoMensajesPendientes(double idMensaje, String remitente, String destinatario, String fechayhora, String mensaje) {
+    public pojoMensajesPendientes(double idMensaje, String remitente, String destinatario, String fechayhora, String mensaje,char leido) {
         this.idMensaje = idMensaje;
         this.remitente = remitente;
         this.destinatario = destinatario;
         this.fechayhora = fechayhora;
         this.mensaje = mensaje;
+        this.leido=leido;
+    }
+
+    public char getLeido() {
+        return leido;
+    }
+
+    public void setLeido(char leido) {
+        this.leido = leido;
     }
 
     public double getIdMensaje() {

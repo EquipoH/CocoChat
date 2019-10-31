@@ -4,8 +4,12 @@
  * and open the template in the editor.
  */
 package cocochat;
+import com.google.gson.Gson;
 import java.awt.Color;
 import java.awt.Image;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -27,7 +31,7 @@ import pojos.pojoMensajesPendientes;
  *
  * @author migue
  */
-public class Chat extends JFrame{
+public class Chat extends JFrame implements Runnable{
      JTextArea c2;
      JFormattedTextField c1;
      JTextField c3;
@@ -36,11 +40,13 @@ public class Chat extends JFrame{
      int a;
      java.util.Date fecha = new Date();
      String destino,remitente;
+     HelperSocket hSocket;
      
      
-    Chat(String destino,String remitente){
+    Chat(String destino,String remitente,HelperSocket hSocket){
         this.destino=destino;
         this.remitente=remitente;
+        this.hSocket=hSocket;
         
     c1 =  new javax.swing.JFormattedTextField();
     c1.setText("");
@@ -59,6 +65,28 @@ public class Chat extends JFrame{
      
      
      c4 = new JButton("OK");
+     c4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                //actualizar usuaruos conectados
+                Date date = new Date();
+              DateFormat hourdateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+             try{
+                 hSocket.salida.writeUTF("c");
+                pojoMensajesPendientes o=new pojoMensajesPendientes(0,remitente,destino,hourdateFormat.format(date),c3.getText(),'n');
+               
+                Gson gson =new Gson();
+                String json=gson.toJson(o,pojoMensajesPendientes.class);
+                
+                 hSocket.salida.writeUTF(json);
+                 
+                 
+             }catch(IOException e){
+            
+            }
+                
+                
+            }
+        });;
      
       c5 = new JLabel("");
       c5.setText("");
@@ -117,6 +145,22 @@ public class Chat extends JFrame{
         ImageIcon icono2 = new ImageIcon(logo2.getImage().getScaledInstance(c5.getWidth(), c5.getWidth(), Image.SCALE_AREA_AVERAGING));
         c5.setIcon(icono2);
     }    
+
+    @Override
+    public void run() {
+        while(true){
+         try{
+                 String jason=hSocket.entrada.readUTF();
+               
+                Gson gson =new Gson();
+                pojoMensajesPendientes s=gson.fromJson(jason,pojoMensajesPendientes.class);
+                System.out.println(s.getMensaje()); 
+                 
+             }catch(IOException e){
+            
+            }
+        }
+    }
      
      
 }
