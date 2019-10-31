@@ -1,11 +1,14 @@
 package cocochat;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -13,6 +16,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.WindowConstants;
+import pojos.pojoGrupo;
 import pojos.pojoUsuario;
 
 public class Home extends JFrame {
@@ -84,17 +88,61 @@ public class Home extends JFrame {
             }
         });;
 
-        c2.setHorizontalAlignment(JLabel.CENTER);
+          c2.setHorizontalAlignment(JLabel.CENTER);
         c2.setVerticalAlignment(JLabel.CENTER);
         c2.setFont(fuente);
         c2.setOpaque(true);
         c2.setBackground(new Color(247, 151, 29));
+        c2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                //actualizar usuaruos conectados
+                try {
+                    hSocket.salida.writeUTF("g");
+                      hSocket.salida.writeUTF(myUser.getUsuario());
+                    String json=hSocket.entrada.readUTF();
+                          ArrayList<pojoGrupo> arreglo=new ArrayList<pojoGrupo>();
+      
+       java.lang.reflect.Type listTyspe=listTyspe = new TypeToken<ArrayList<pojoGrupo>>(){}.getType();
+       arreglo=new Gson().fromJson(json,listTyspe);
+               c5.removeAllItems();
+                    for (pojoGrupo grupo : arreglo) {
+                        c5.addItem(grupo.getNombre());
+                    }
+
+                } catch (IOException e) {
+                }
+            }
+        });;
 
         c3.setHorizontalAlignment(JLabel.CENTER);
         c3.setVerticalAlignment(JLabel.CENTER);
         c3.setFont(fuente);
         c3.setOpaque(true);
         c3.setBackground(new Color(247, 151, 29));
+        c3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                //actualizar usuaruos conectados
+                try {
+                    hSocket.salida.writeUTF("h");
+                    hSocket.salida.writeUTF(myUser.getUsuario());
+                    String json=hSocket.entrada.readUTF();
+                    Gson gson=new Gson();
+                    
+                    
+                    
+                    
+                    c4.removeAllItems();
+//                    for (String usuario : usuarios) {
+//                        if(usuario.equals("me cerre")){
+//                        }else{
+//                        c4.addItem(usuario);}
+//                        System.out.println(usuario);
+//                    }
+
+                } catch (IOException e) {
+                }
+            }
+        });;
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
