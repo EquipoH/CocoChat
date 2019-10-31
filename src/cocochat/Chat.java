@@ -59,6 +59,7 @@ public class Chat extends JFrame{
      
      
      c4 = new JButton("OK");
+     c4.setBackground(new Color(247, 160, 7));
      
       c5 = new JLabel("");
       c5.setText("");
@@ -95,6 +96,7 @@ public class Chat extends JFrame{
                 .addComponent(c4, 30,30,30))
         );
       
+         
         this.getContentPane();
         setTitle("CHAT");
         pack();
