@@ -9,7 +9,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -20,14 +19,15 @@ import pojos.pojoGrupo;
 import pojos.pojoMensajesPendientes;
 import pojos.pojoUsuario;
 
-public class Home extends JFrame implements Runnable {
+public class Home extends JFrame {
 
     HelperSocket hSocket;
     pojoUsuario myUser;
+    boolean on = true;
+    Thread hilo;
 
     public Home(HelperSocket hSocket, pojoUsuario myUser) {
-        Thread hilo=new Thread(this);
-    hilo.start();
+
         this.hSocket = hSocket;
         this.myUser = myUser;
 
@@ -49,29 +49,6 @@ public class Home extends JFrame implements Runnable {
         JButton c11 = new JButton("Solicitud");
         JButton c12 = new JButton("Crear Grupo");
 
-        c5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                try {
-                    hSocket.salida.writeUTF("g");
-                    hSocket.salida.writeUTF(myUser.getUsuario());
-                    String json = hSocket.entrada.readUTF();
-                    ArrayList<pojoGrupo> arreglo = new ArrayList<pojoGrupo>();
-
-                    java.lang.reflect.Type listTyspe = listTyspe = new TypeToken<ArrayList<pojoGrupo>>() {
-                    }.getType();
-                    arreglo = new Gson().fromJson(json, listTyspe);
-                    c5.removeAllItems();
-                    for (pojoGrupo grupo : arreglo) {
-                        c5.addItem(grupo.getNombre());
-                    }
-
-                } catch (IOException e) {
-                }
-            }
-        });
-        
-        
-        
         //c11.setBackground(new Color(24, 84, 245));
         c11.setForeground(Color.BLACK);
         c11.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -97,9 +74,12 @@ public class Home extends JFrame implements Runnable {
         c1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 //actualizar usuaruos conectados
+                on = false;
                 try {
                     hSocket.salida.writeUTF("f");
+                    System.out.println("esperando para leer");
                     String usuarioS = hSocket.entrada.readUTF();
+                    System.out.println("ya se leyo");
                     String[] usuarios = usuarioS.split("/");
                     c4.removeAllItems();
                     for (String usuario : usuarios) {
@@ -171,13 +151,11 @@ public class Home extends JFrame implements Runnable {
         c7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 //actualizar usuaruos conectados
-              
-                String user =c4.getSelectedItem().toString();
-                Chat chat=new Chat(user,myUser.getUsuario(),hSocket);
+
+                String user = c4.getSelectedItem().toString();
+                Chat chat = new Chat(user, myUser.getUsuario(), hSocket);
                 chat.show();
-                
-                
-                
+
             }
         });;
 
@@ -247,21 +225,4 @@ public class Home extends JFrame implements Runnable {
         });
     }
 
-    @Override
-    public void run() {
-     while(true){
-         try{
-                 String jason=hSocket.entrada.readUTF();
-               
-                Gson gson =new Gson();
-                pojoMensajesPendientes s=gson.fromJson(jason,pojoMensajesPendientes.class);
-                System.out.println(s.getMensaje()); 
-                 
-             }catch(IOException e){
-            
-            }
-        }
-    
-    
-    }
 }
