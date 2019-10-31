@@ -35,8 +35,13 @@ public class Chat extends JFrame{
      JLabel c5;
      int a;
      java.util.Date fecha = new Date();
+     String destino,remitente;
      
-    Chat(){
+     
+    Chat(String destino,String remitente){
+        this.destino=destino;
+        this.remitente=remitente;
+        
     c1 =  new javax.swing.JFormattedTextField();
     c1.setText("");
     c1.setFont(new java.awt.Font("Segoe UI Black", 1, 15)); // NOI18N
