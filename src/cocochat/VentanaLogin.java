@@ -58,13 +58,13 @@ public class VentanaLogin extends JFrame
                     hSocket.salida.writeUTF(c2.getText()+"/"+c3.getText());
                     String response=hSocket.entrada.readUTF();
                     if(response.equals("null")){
+                        contador++;
                         if(contador>=3){
                         contador=0;
                         VentanaRegistro1 ven = new VentanaRegistro1(hSocket);
                         ven.show();
                         }
                         System.out.println("El usuario no existe");
-                        contador++;
                     }else{
                     Gson gson=new Gson();
                         pojoUsuario user = gson.fromJson(response, pojoUsuario.class);
