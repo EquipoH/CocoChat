@@ -153,6 +153,13 @@ public class Chat extends JFrame implements Runnable {
         ImageIcon logo2 = new ImageIcon(getClass().getResource("/imagen/flecha5.png"));
         ImageIcon icono2 = new ImageIcon(logo2.getImage().getScaledInstance(c5.getWidth(), c5.getWidth(), Image.SCALE_AREA_AVERAGING));
         c5.setIcon(icono2);
+        
+        
+        al = archivo.leerMensaje(destino, remitente);
+
+        for (pojoMensajesPendientes mensaje : al) {
+            c2.setText(c2.getText() + (mensaje.getIdMensaje() + mensaje.getRemitente() + ": " + mensaje.getMensaje() + "\n"));
+        }
     }
 
     @Override
