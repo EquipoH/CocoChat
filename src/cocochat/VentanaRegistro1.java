@@ -138,6 +138,7 @@ public class VentanaRegistro1 extends JFrame {
                     System.out.println(response);
                     if(response.equals("true")){
                         JOptionPane.showMessageDialog(null,"el usuario se creo con existo", "cocoChat", HEIGHT);
+                        salir(evt);
                     }else{
                      JOptionPane.showMessageDialog(null,"el usuario no se creo con existo", "cocoChat" , HEIGHT);     
                     }
