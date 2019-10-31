@@ -57,6 +57,7 @@ public class VentanaLogin extends JFrame
                         Home home=new Home(hSocket,user);
                        cerrar(evt);
                         home.show();
+                       
                     }
                     
                 
