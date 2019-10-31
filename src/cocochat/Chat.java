@@ -87,7 +87,8 @@ public class Chat extends JFrame implements Runnable {
 
                     hSocket.salida.writeUTF(json);
                     
-                     archivo.escribirMensaje(o);
+                    archivo.escribirMensaje(o);
+                    
 
                 al.removeAll(al);
                 al = archivo.leerMensaje(destino, remitente);
