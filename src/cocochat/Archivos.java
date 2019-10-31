@@ -134,7 +134,7 @@ public class Archivos {
                 for (int i = 0; i < mensajes.length(); i++) {
 
                     mensaje = mensajes.getJSONObject(i);
-                    if (mensaje.getString("remitente").equals(remitentes) && mensaje.getString("destinatario").equals(destino)) {
+                   
                         idMensaje = mensaje.getDouble("idMensaje");
                         remitente = mensaje.getString("remitente");
                         destinatario = mensaje.getString("destinatario");
@@ -143,7 +143,7 @@ public class Archivos {
                         leido = mensaje.getString("leido");
                         msg = new pojoMensajesPendientes(idMensaje, remitente, destinatario, fechayhora, texto, leido.charAt(0));
                         arreglo.add(msg);
-                    }
+                    
                     System.out.println("idMensaje: " + String.format("%d", (long) idMensaje));
                     System.out.println("remitente: " + remitente);
                     System.out.println("destinatario: " + destinatario);

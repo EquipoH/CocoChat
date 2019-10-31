@@ -91,9 +91,16 @@ public class Chat extends JFrame implements Runnable {
 
                 al.removeAll(al);
                 al = archivo.leerMensaje(destino, remitente);
-
+                c2.setText("");
+                String aux="";
                 for (pojoMensajesPendientes mensaje : al) {
-                    c2.setText(c2.getText() + (mensaje.getIdMensaje() + mensaje.getRemitente() + ": " + mensaje.getMensaje() + "\n"));
+                    if((mensaje.getDestinatario().equals(destino) &&
+                            mensaje.getRemitente().equals(remitente))||
+                            (mensaje.getDestinatario().equals(remitente) &&
+                            mensaje.getRemitente().equals(destino))){
+                        aux=c2.getText() + (mensaje.getIdMensaje() + mensaje.getRemitente() + ": " + mensaje.getMensaje() + "\n");
+                    }
+                    
                 }
                    
 
