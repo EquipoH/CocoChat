@@ -8,6 +8,7 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -23,7 +24,7 @@ public class Home extends JFrame {
         this.hSocket = hSocket;
         this.myUser = myUser;
 
-        this.setMinimumSize(new Dimension(350, 500));
+        this.setMinimumSize(new Dimension(150, 400));
 
         this.getContentPane().setBackground(new Color(26, 26, 26));
         Font fuente = new Font("Gadugi", 0, 14);
@@ -34,6 +35,21 @@ public class Home extends JFrame {
         JComboBox c4 = new JComboBox();
         JComboBox c5 = new JComboBox();
         JComboBox c6 = new JComboBox();
+        JButton c7 = new JButton("Chat");
+        JButton c8 = new JButton("Solicitud");
+        JButton c9 = new JButton("Chat");
+        JButton c10 = new JButton("Chat");
+        JButton c11 = new JButton("Solicitud");
+        JButton c12 = new JButton("Crear Grupo");
+        
+        //c11.setBackground(new Color(24, 84, 245));
+        c11.setForeground(Color.BLACK);
+        //c12.setBackground(new Color(28, 241, 32));
+        c12.setForeground(Color.BLACK);
+         
+        c4.setBackground(new Color(247,151,29));
+        c4.setForeground(Color.black);
+        c4.setFont(fuente);
 
         c1.setHorizontalAlignment(JLabel.CENTER);
         c1.setVerticalAlignment(JLabel.CENTER);
@@ -81,14 +97,24 @@ public class Home extends JFrame {
                 .addGroup(layout.createParallelGroup()
                         .addComponent(c1, 150, 300, 450)
                         .addComponent(c4, 150, 300, 450)
+                        .addGroup(layout.createSequentialGroup()
+                        .addComponent(c7, 150,150, 150)
+                        .addComponent(c8, 150,150,150)
+                        )
+                        
+                        
                 )
                 .addGroup(layout.createParallelGroup()
                         .addComponent(c2, 150, 300, 450)
                         .addComponent(c5, 150, 300, 450)
+                        .addComponent(c9,150,300,450)
+                        .addComponent(c11,150,150,250)
                 )
                 .addGroup(layout.createParallelGroup()
                         .addComponent(c3, 150, 300, 450)
                         .addComponent(c6, 150, 300, 450)
+                        .addComponent(c10,150,300,450)
+                        .addComponent(c12,150,150,250)
                 )
         );
 
@@ -103,10 +129,26 @@ public class Home extends JFrame {
                         .addComponent(c5, 20, 30, 40)
                         .addComponent(c6, 20, 30, 40)
                 )
+                .addGroup(layout.createParallelGroup()
+                        .addGroup(layout.createSequentialGroup()
+                        .addComponent(c7,20,30,40)
+                        )
+                        .addComponent(c8, 20,30,40)
+                        .addComponent(c9,20,30,40)
+                        .addGap(230)
+                        .addComponent(c10,20,30,40)
+                        .addGap(230)
+                )
+                .addGroup(layout.createParallelGroup()
+                        .addComponent(c11,20,30,40)
+                        .addComponent(c12,20,30,40)
+                )
+                
         );
 
         setTitle("CocoChat");
         pack();
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent evt) {
